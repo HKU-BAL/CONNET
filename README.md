@@ -1,5 +1,14 @@
 # CONNET
 
+## Dependencies
+```
+tensorflow
+keras
+numpy
+samtools
+minimap2
+```
+
 ## Install
 `python setup.py build_ext --inplace`
 
