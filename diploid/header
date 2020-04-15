@@ -1,0 +1,11 @@
+##fileformat=VCFv4.1
+##commandline="(whatshap 0.18) phase --reference /nas9/gpufarm/yfzhang2/CONNET/variantcalling/20.fa -o round_1_final_rephased.vcf round_1_final.vcf /nas9/gpufarm/yfzhang2/CONNET/variantcalling/0.bam --ignore-read-groups"
+##INFO=<ID=pos1,Number=.,Type=Integer,Description="POS of incorporated variants from haplotype 1">
+##INFO=<ID=q1,Number=1,Type=Float,Description="Combined qual score for haplotype 1">
+##INFO=<ID=pos2,Number=.,Type=Integer,Description="POS of incorporated variants from haplotype 2">
+##INFO=<ID=q2,Number=1,Type=Float,Description="Combined qual score for haplotype 2">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=GQ,Number=1,Type=Float,Description="Genotype quality score">
+##FORMAT=<ID=PS,Number=1,Type=Integer,Description="Phase set identifier">
+##contig=<ID=20>
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	SAMPLE
