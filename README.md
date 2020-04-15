@@ -29,6 +29,7 @@ python setup.py build_ext --inplace
 # This will compile a `parse_pileup.so` in current folder.
 
 export CONNET=$PWD/connet.py 
+export CONNET_DIPLOID=$PWD/diploid.sh
 ```
 
 
@@ -64,15 +65,20 @@ Included at `models/`
 N.B. correction phase and recovery phase are trained separately, `*.model1` is trained for correction phase, `*.model2` is trained for recovery phase. They are not compatible and both are necessary.
 
 ## General usage
-
+### Haploid Consensus
 ```bash
 # haploid consensus
+mkdir new_experiment
+cd new_experiment
 python $CONNET model1 model2 raw_reads.fa draft_assembly.fa
+```
 
-# diploid consensus
-# run haploid consensus for at least 1 iteration first
+### Diploid consensus
+```bash
 # make sure whatsapp, bgzip, tabix is installed
-bash diploid.sh model1 model2 raw_reads.fa haploid_consensus.fa
+mkdir new_experiment
+cd new_experiment
+bash $CONNET_DIPLOID model1 model2 raw_reads.fa draft_assembly.fa
 ```
 
 ### Notes
