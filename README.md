@@ -14,6 +14,8 @@ Single-molecule sequencing technologies produce much longer reads compared to ne
 # make sure the following tools are installed
 samtools 
 minimap2
+parallel
+python
 
 # make sure the following Python packages are installed
 tensorflow
@@ -24,6 +26,7 @@ git clone https://github.com/HKU-BAL/CONNET.git
 cd CONNET
 
 python setup.py build_ext --inplace
+# This will compile a `parse_pileup.so` in current folder.
 
 export CONNET=$PWD/connet.py 
 ```
@@ -39,7 +42,7 @@ export CONNET=$PWD/connet.py
 ```bash
 mkdir ecoli_demo
 cd ecoli_demo
-python $CONNET ../models/ecoli.model1 ../models/ecoli.model2 ../sample_data/ecoli_raw_reads.fa ../sample_data/ecoli_draft_assembly.fa
+python $CONNET ../models/ecoli.model1 ../models/ecoli.model2 ../sample_data/ecoli_raw_reads.fq ../sample_data/ecoli_draft_assembly.fa
 ```
 
 * Step 3. Result is at `2.fa`
@@ -56,7 +59,7 @@ Result from iteration 1 is at `1.fa`
 Included at `models/`
 
 - Trained on _E. coli_: `models/ecoli.*`
-- Trained on _H. sapiens_: `models/human.*`
+- Trained on _H. sapiens_ chromosome 1: `models/human.chr1.*`
 
 N.B. correction phase and recovery phase are trained separately, `*.model1` is trained for correction phase, `*.model2` is trained for recovery phase. They are not compatible and both are necessary.
 
@@ -67,6 +70,12 @@ N.B. correction phase and recovery phase are trained separately, `*.model1` is t
 python $CONNET model1 model2 raw_reads.fa draft_assembly.fa
 
 # diploid consensus
-# make sure whatsapp is installed
-XXX
+# run haploid consensus for at least 1 iteration first
+# make sure whatsapp, bgzip, tabix is installed
+bash diploid.sh model1 model2 raw_reads.fa haploid_consensus.fa
 ```
+
+### Notes
+CONNET was benchmarked on a 24-core Intel(R) Xeon(R) Silver 4116 CPU @ 2.10GHz workstation
+- For machines with limited processors, reduce T (number of thread) in `connet.py`.
+- For machines with limited memory, reduce PHASE1_BATCHSIZE, PHASE2_BATCHSIZE (in bp) in `connet.py`.
