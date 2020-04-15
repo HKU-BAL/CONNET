@@ -15,7 +15,7 @@ samtools index 0.bam -@$T
 samtools faidx 0.fa
 python $DIR/split_job.py 0 $BATCH_SIZE
 
-parallel -j1 python $DIR/diploid/vc_het.py ../$model1 :::: 0.parallel
+parallel -j1 python $DIR/vc_het.py ../$model1 :::: 0.parallel
 cat $DIR/diploid/header HET.*.vcf.??? | vcf-sort > unphased.vcf
 bgzip unphased.vcf
 tabix -p vcf unphased.vcf.gz
