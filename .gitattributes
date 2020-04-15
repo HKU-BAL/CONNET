@@ -1,0 +1,2 @@
+sample_data/ecoli_draft_assembly.fa filter=lfs diff=lfs merge=lfs -text
+sample_data/ecoli_raw_reads.fq filter=lfs diff=lfs merge=lfs -text
