@@ -15,7 +15,7 @@ Single-molecule sequencing technologies produce much longer reads compared to ne
 samtools 
 minimap2
 parallel
-python
+python2
 
 # make sure the following Python packages are installed
 tensorflow
@@ -25,7 +25,7 @@ numpy
 git clone https://github.com/HKU-BAL/CONNET.git
 cd CONNET
 
-python setup.py build_ext --inplace
+python2 setup.py build_ext --inplace
 # This will compile a `parse_pileup.so` in current folder.
 
 export CONNET=$PWD/connet.py 
@@ -38,15 +38,19 @@ export CONNET_DIPLOID=$PWD/diploid.sh
 ## Quick demo
 
 * Step 1. Install 
-* Step 2. Run
+* Step 2. Obtain sample input
+```bash
+bash sample_data/download.sh
+```
+* Step 3. Run
 
 ```bash
 mkdir ecoli_demo
 cd ecoli_demo
-python $CONNET ../models/ecoli.model1 ../models/ecoli.model2 ../sample_data/ecoli_raw_reads.fq ../sample_data/ecoli_draft_assembly.fa
+python2 $CONNET ../models/ecoli.model1 ../models/ecoli.model2 ../sample_data/ecoli_raw_reads.fq ../sample_data/ecoli_draft_assembly.fa
 ```
 
-* Step 3. Result is at `2.fa`
+* Step 4. Result is at `2.fa`
 
 By default, CONNET runs for 2 iterations
 
@@ -70,7 +74,7 @@ N.B. correction phase and recovery phase are trained separately, `*.model1` is t
 # haploid consensus
 mkdir new_experiment
 cd new_experiment
-python $CONNET model1 model2 raw_reads.fa draft_assembly.fa
+python2 $CONNET model1 model2 raw_reads.fa draft_assembly.fa
 ```
 
 ### Diploid consensus

@@ -13,9 +13,9 @@ ln -s ../$asm 0.fa
 minimap2 -a -x map-ont 0.fa ../$input -t$T | samtools sort -@$T -o 0.bam
 samtools index 0.bam -@$T 
 samtools faidx 0.fa
-python $DIR/split_job.py 0 $BATCH_SIZE
+python2 $DIR/split_job.py 0 $BATCH_SIZE
 
-parallel -j1 python $DIR/vc_het.py ../$model1 :::: 0.parallel
+parallel -j1 python2 $DIR/vc_het.py ../$model1 :::: 0.parallel
 cat $DIR/diploid/header HET.*.vcf.??? | vcf-sort > unphased.vcf
 bgzip unphased.vcf
 tabix -p vcf unphased.vcf.gz
@@ -37,7 +37,7 @@ ln -s ../0.bam .
 ln -s ../0.bam.bai .
 ln -s ../0.parallel .
 samtools fastq 0.bam -0 input.fa
-python $DIR/connet.py ../$model1 ../$model2
+python2 $DIR/connet.py ../$model1 ../$model2
 
 cd ..
 mkdir -p HP2
@@ -46,7 +46,7 @@ ln -s ../0.bam .
 ln -s ../0.bam.bai .
 ln -s ../0.parallel .
 samtools fastq 0.bam -0 input.fa
-python $DIR/connet.py $model1 $model2
+python2 $DIR/connet.py $model1 $model2
 
 cp HP1/2.fa diploid_consensus_1.fa
 cp HP2/2.fa diploid_consensus_2.fa
