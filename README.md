@@ -18,9 +18,9 @@ parallel
 python2
 
 # make sure the following Python packages are installed
-tensorflow
-keras
-numpy
+tensorflow == 1.13.1
+keras == 2.2.4
+numpy == 1.16.4
 
 git clone https://github.com/HKU-BAL/CONNET.git
 cd CONNET
